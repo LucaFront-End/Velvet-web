@@ -10,7 +10,7 @@ const seoKeywords = [
     'retapizado CDMX',
     'tapicería Estado de México',
     'retapizado de sillas',
-    'tapicería automotriz',
+
     'telas para muebles',
     'tapicería a domicilio',
     'restauración de muebles',
@@ -31,7 +31,7 @@ const serviceLinks = [
     { label: 'Tapizado de Salas', to: '/servicios/salas' },
     { label: 'Tapizado de Sillas', to: '/servicios/sillas' },
     { label: 'Tapizado de Cabeceras', to: '/servicios/cabeceras' },
-    { label: 'Tapicería Automotriz', to: '/servicios/automotriz' },
+
     { label: 'Catálogo de Telas', to: '/servicios/telas' },
 ]
 

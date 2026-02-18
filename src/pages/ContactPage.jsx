@@ -32,7 +32,6 @@ const serviceOptions = [
     'Tapicería de Salas',
     'Retapizado de Sillas',
     'Cabeceras a Medida',
-    'Tapicería Automotriz',
     'Catálogo de Telas',
     'Otro',
 ]

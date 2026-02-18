@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App'
 import Home from './pages/Home'
+import HomeV2 from './pages/HomeV2'
 import ServicePage from './pages/ServicePage'
 import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
+            <Route path="home-v2" element={<HomeV2 />} />
             <Route path="servicios" element={<ServicesIndexPage />} />
             <Route path="servicios/:slug" element={<ServicePage />} />
             <Route path="galeria" element={<GalleryPage />} />

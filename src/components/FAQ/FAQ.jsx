@@ -23,10 +23,6 @@ const faqs = [
         q: '¿Ofrecen garantía?',
         a: 'Sí, garantizamos cada trabajo. Si no estás satisfecho con el resultado, lo rehacemos sin costo. Tu confianza es nuestra prioridad.',
     },
-    {
-        q: '¿Hacen tapicería automotriz?',
-        a: 'Sí, realizamos vestiduras de asientos, cielos, paneles de puertas y volantes con materiales de alta resistencia y acabado premium.',
-    },
 ]
 
 export default function FAQ() {

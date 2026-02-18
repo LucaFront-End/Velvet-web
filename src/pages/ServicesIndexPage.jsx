@@ -49,7 +49,7 @@ export default function ServicesIndexPage() {
             <SEO
                 title="Servicios de Tapicería"
                 path="/servicios"
-                description="Conoce todos nuestros servicios de tapicería: salas, sillas, cabeceras, automotriz y catálogo de telas. Recolección a domicilio en CDMX y Edomex."
+                description="Conoce todos nuestros servicios de tapicería: salas, sillas, cabeceras y catálogo de telas. Recolección a domicilio en CDMX y Edomex."
             />
 
             {/* ═══ HERO ═══ */}
@@ -61,7 +61,7 @@ export default function ServicesIndexPage() {
                             Todo lo que tu mueble <em>necesita</em>
                         </h1>
                         <p className="svi-hero-sub svi-stagger">
-                            Tapicería residencial, automotriz y fabricación a medida.
+                            Tapicería residencial y fabricación a medida.
                             Cada servicio incluye recolección a domicilio, telas premium y garantía.
                         </p>
                     </div>

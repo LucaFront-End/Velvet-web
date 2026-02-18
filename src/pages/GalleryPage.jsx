@@ -12,7 +12,6 @@ const categories = [
     { key: 'salas', label: 'Salas' },
     { key: 'sillas', label: 'Sillas' },
     { key: 'cabeceras', label: 'Cabeceras' },
-    { key: 'automotriz', label: 'Automotriz' },
 ]
 
 const gallery = [
@@ -38,12 +37,6 @@ const gallery = [
     { id: 15, cat: 'cabeceras', src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80', title: 'Recámara completa', fabric: 'Lino' },
     { id: 16, cat: 'cabeceras', src: 'https://images.unsplash.com/photo-1616627561950-9f746e330187?w=800&q=80', title: 'Cabecera bastones tela', fabric: 'Bouclé' },
 
-    // Automotriz — 5 items
-    { id: 17, cat: 'automotriz', src: 'https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=800&q=80', title: 'Interior sedan premium', fabric: 'Piel Sintética' },
-    { id: 18, cat: 'automotriz', src: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80', title: 'Asientos deportivos', fabric: 'Alcántara' },
-    { id: 19, cat: 'automotriz', src: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80', title: 'Corvette restaurado', fabric: 'Vinipiel Auto' },
-    { id: 20, cat: 'automotriz', src: 'https://images.unsplash.com/photo-1542362567-b07e54358753?w=800&q=80', title: 'Interior clásico', fabric: 'Piel Grado A' },
-    { id: 21, cat: 'automotriz', src: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80', title: 'Volante retapizado', fabric: 'Neopreno' },
 ]
 
 /* Featured projects with larger images + more detail */
@@ -183,7 +176,7 @@ export default function GalleryPage() {
             <SEO
                 title="Galería de Proyectos"
                 path="/galeria"
-                description="Explorá nuestra galería de más de 200 proyectos de tapicería: salas, sillas, cabeceras y automotriz. Antes y después de cada transformación."
+                description="Explorá nuestra galería de más de 200 proyectos de tapicería: salas, sillas y cabeceras. Antes y después de cada transformación."
             />
 
             {/* ═══ 1. HERO — Minimal, typographic ═══ */}

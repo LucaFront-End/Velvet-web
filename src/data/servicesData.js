@@ -121,43 +121,6 @@ const services = [
         },
     },
     {
-        slug: 'automotriz',
-        title: 'Tapicería Automotriz',
-        tagline: 'Renueva el interior de tu vehículo',
-        tag: 'Vehículos',
-        description: 'Vestiduras, cielos y paneles con materiales de alta resistencia.',
-        longDescription:
-            'El interior de tu auto merece la misma atención que el exterior. En Velvet Tapicería ofrecemos servicio completo de tapicería automotriz: desde vestiduras de asientos hasta tapizado de cielos, paneles de puerta y volantes. Utilizamos materiales de alta resistencia al desgaste, rayos UV y temperatura — ideales para el clima de la Ciudad de México. Trabajamos con vinipiel automotriz, piel sintética de grado A, y telas técnicas que mantienen su apariencia por años.',
-        heroImage: 'https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=1400&q=80',
-        image: 'https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=600&q=80',
-        features: [
-            'Vestiduras completas de asientos',
-            'Tapizado de cielos y paneles',
-            'Materiales resistentes a UV',
-            'Vinipiel y piel sintética grado A',
-            'Compatible con todas las marcas',
-            'Servicio express disponible',
-        ],
-        process: [
-            { num: '01', title: 'Diagnóstico', desc: 'Evaluamos el estado actual del interior de tu auto.' },
-            { num: '02', title: 'Material', desc: 'Selecciona el material y color ideal para tu vehículo.' },
-            { num: '03', title: 'Tapizado', desc: 'Nuestros técnicos retapizan cada pieza con precisión.' },
-            { num: '04', title: 'Entrega', desc: 'Tu auto listo, con un interior renovado por completo.' },
-        ],
-        fabrics: ['Vinipiel Automotriz', 'Piel Sintética Grado A', 'Alcántara', 'Tela Técnica', 'Neopreno'],
-        gallery: [
-            'https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=600&q=80',
-            'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=80',
-            'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80',
-            'https://images.unsplash.com/photo-1542362567-b07e54358753?w=600&q=80',
-        ],
-        stats: { projects: '25+', satisfaction: '97%', avgTime: '5 días' },
-        seo: {
-            title: 'Tapicería Automotriz en CDMX — Vestiduras y Cielos | Velvet',
-            description: 'Tapicería automotriz profesional en Ciudad de México. Vestiduras, cielos, paneles. Materiales resistentes a UV, todas las marcas.',
-        },
-    },
-    {
         slug: 'telas',
         title: 'Catálogo de Telas',
         tagline: 'Más de 200 opciones para tu proyecto',
