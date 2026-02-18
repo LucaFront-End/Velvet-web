@@ -1,0 +1,302 @@
+/* ============================================
+   HEADER — Sticky Navigation
+   ============================================ */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    transition: background-color var(--duration-normal) var(--ease-out),
+        box-shadow var(--duration-normal) var(--ease-out);
+    background-color: rgba(250, 249, 246, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.header.scrolled {
+    background-color: rgba(250, 249, 246, 0.95);
+    box-shadow: 0 1px 0 var(--color-border);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+/* --- Logo --- */
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    z-index: 10;
+}
+
+.header-logo-text {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--color-text);
+    text-transform: uppercase;
+}
+
+.header-logo-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-gold);
+    display: inline-block;
+    margin-left: 2px;
+}
+
+/* --- Desktop Navigation --- */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+}
+
+.header-nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.header-nav-link {
+    position: relative;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+    transition: color var(--duration-fast) var(--ease-out);
+    padding: var(--space-xs) 0;
+}
+
+.header-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background-color: var(--color-gold);
+    transition: width var(--duration-normal) var(--ease-out);
+}
+
+.header-nav-link:hover {
+    color: var(--color-text);
+}
+
+.header-nav-link:hover::after {
+    width: 100%;
+}
+
+/* --- Desktop Phone --- */
+.header-phone {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: 0.02em;
+    transition: color var(--duration-fast) var(--ease-out);
+}
+
+.header-phone:hover {
+    color: var(--color-gold);
+}
+
+.header-phone-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+/* --- Desktop CTA --- */
+.header-cta {
+    padding: 0.625rem 1.5rem;
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+}
+
+/* --- Actions (phone + CTA group) --- */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+/* --- Mobile Burger Toggle (hidden on desktop) --- */
+.header-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.header-burger span {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--color-text);
+    border-radius: 1px;
+    transition: all var(--duration-normal) var(--ease-out);
+    transform-origin: center;
+}
+
+.header-burger.active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.header-burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.header-burger.active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ============================================
+   MOBILE FULLSCREEN MENU — Sibling overlay
+   Rendered outside the header element to avoid
+   iOS stacking context / backdrop-filter bugs
+   ============================================ */
+
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: #faf9f6;
+    animation: menuFadeIn 0.25s ease-out forwards;
+}
+
+.mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1.75rem;
+    padding: calc(var(--header-height) + 1rem) 2rem 2rem;
+}
+
+.mobile-menu-link {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--color-text);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: menuItemIn 0.4s ease-out forwards;
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link:active {
+    color: var(--color-gold);
+}
+
+.mobile-menu-divider {
+    width: 40px;
+    height: 1px;
+    background-color: var(--color-border);
+    opacity: 0;
+    animation: menuItemIn 0.4s ease-out 0.38s forwards;
+}
+
+.mobile-menu-phone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--color-gold);
+    font-weight: 500;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: menuItemIn 0.4s ease-out forwards;
+}
+
+.mobile-menu-cta {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: menuItemIn 0.4s ease-out forwards;
+    margin-top: 0.5rem;
+}
+
+/* Animations */
+@keyframes menuFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes menuItemIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   RESPONSIVE — Mobile breakpoint
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .header {
+        background-color: #faf9f6;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .header.scrolled {
+        background-color: #faf9f6;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .header-nav {
+        display: none;
+    }
+
+    .header-phone {
+        display: none;
+    }
+
+    .header-cta {
+        display: none;
+    }
+
+    .header-burger {
+        display: flex;
+    }
+}
