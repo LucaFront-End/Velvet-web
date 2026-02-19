@@ -1,4 +1,4 @@
-import Hero from '../components/Hero/Hero'
+import Hero from '../components/Hero/HeroV2'
 import ServicesBento from '../components/ServicesBento/ServicesBento'
 import Domicilio from '../components/Domicilio/Domicilio'
 import Zones from '../components/Zones/Zones'
