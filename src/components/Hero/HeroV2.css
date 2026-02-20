@@ -144,6 +144,67 @@
     animation: fadeIn 1s var(--ease-out) 0.4s both;
 }
 
+/* ── Floating cards ── */
+.hero-floating-card {
+    position: absolute;
+    bottom: -1.25rem;
+    left: -1.25rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.07),
+        0 20px 40px -10px rgba(0, 0, 0, 0.12);
+    animation: float 4s ease-in-out infinite;
+    z-index: 20;
+}
+
+.hero-floating-card--right {
+    bottom: auto;
+    left: auto;
+    top: -1rem;
+    right: -1rem;
+    animation-delay: 1.5s;
+}
+
+.hero-floating-icon {
+    font-size: 1.5rem;
+    color: var(--color-gold);
+    line-height: 1;
+}
+
+.hero-floating-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.hero-floating-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.hero-floating-sub {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
 /* ── Slider — mirrors BeforeAfter.css ── */
 .ba-slider {
     position: relative;
@@ -380,6 +441,16 @@
         width: 100%;
     }
 
+    .hero-floating-card {
+        bottom: -1rem;
+        left: 0;
+    }
+
+    .hero-floating-card--right {
+        top: -0.75rem;
+        right: 0;
+    }
+
     .hero-scroll {
         display: none;
     }
@@ -406,6 +477,10 @@
 
     .hero-stats {
         gap: var(--space-xl);
+    }
+
+    .hero-floating-card {
+        display: none;
     }
 
     .ba-handle-knob {

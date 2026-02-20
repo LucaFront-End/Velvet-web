@@ -212,6 +212,24 @@ export default function HeroV2() {
 
                 <div className="hero-visual">
                     <HeroSlider />
+
+                    {/* Floating card — bottom-left */}
+                    <div className="hero-floating-card">
+                        <div className="hero-floating-icon">✦</div>
+                        <div className="hero-floating-text">
+                            <span className="hero-floating-title">Garantía de calidad</span>
+                            <span className="hero-floating-sub">En cada proyecto</span>
+                        </div>
+                    </div>
+
+                    {/* Floating card — top-right */}
+                    <div className="hero-floating-card hero-floating-card--right">
+                        <div className="hero-floating-icon">⟐</div>
+                        <div className="hero-floating-text">
+                            <span className="hero-floating-title">A domicilio</span>
+                            <span className="hero-floating-sub">Recogemos y entregamos</span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
