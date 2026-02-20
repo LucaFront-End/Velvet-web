@@ -49,6 +49,19 @@
     transition: opacity 1s ease, transform 1s ease;
 }
 
+/* Pre-title label above VELVET */
+.hero-v3__pre-title {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(0.75rem, 2vw, 1.25rem);
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 0.25em;
+    line-height: 1;
+}
+
 .hero-v3--visible .hero-v3__bg-title {
     opacity: 1;
     transform: translateX(-50%) translateY(0);

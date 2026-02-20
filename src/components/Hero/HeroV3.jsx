@@ -18,6 +18,7 @@ export default function HeroV3() {
 
                 {/* ── Background Title (Huge) ── */}
                 <h1 className="hero-v3__bg-title">
+                    <span className="hero-v3__pre-title">Tapicería</span>
                     VELVET
                 </h1>
 
