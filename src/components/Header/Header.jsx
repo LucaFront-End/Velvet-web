@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './Header.css'
 
 const navLinks = [
-    { label: 'Inicio', to: '/' },
     { label: 'Servicios', to: '/servicios' },
     { label: 'Galería', to: '/galeria' },
     { label: 'Nosotros', to: '/nosotros' },
