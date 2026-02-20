@@ -1,4 +1,4 @@
-import Hero from '../components/Hero/HeroV3'
+import HeroV2 from '../components/Hero/HeroV2'
 import ServicesBento from '../components/ServicesBento/ServicesBento'
 import Domicilio from '../components/Domicilio/Domicilio'
 import Zones from '../components/Zones/Zones'
@@ -9,14 +9,14 @@ import FAQ from '../components/FAQ/FAQ'
 import FinalCTA from '../components/FinalCTA/FinalCTA'
 import SEO from '../components/SEO/SEO'
 
-export default function Home() {
+export default function HomeV2() {
     return (
         <>
             <SEO
-                path="/"
+                path="/home-v2"
                 description="Velvet Tapicería: expertos en tapizado de muebles, tapicería de salas y retapizados personalizados. Tapicero a domicilio en CDMX y Estado de México. Telas premium y garantía."
             />
-            <Hero />
+            <HeroV2 />
             <ServicesBento />
             <Domicilio />
             <Zones />
