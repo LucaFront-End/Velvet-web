@@ -22,8 +22,8 @@ const contactCards = [
     {
         icon: 'email',
         label: 'Correo',
-        value: 'hola@velvettapiceria.com',
-        href: 'mailto:hola@velvettapiceria.com',
+        value: 'hola@tapiceriavelvet.com',
+        href: 'mailto:hola@tapiceriavelvet.com',
         accent: 'var(--color-text)',
     },
 ]
