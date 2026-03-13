@@ -131,9 +131,9 @@ export default function ContactPage() {
     return (
         <div className="contact-page" ref={pageRef}>
             <SEO
-                title="Contacto"
+                rawTitle="Contacto Velvet Tapicería | Tapicería Cerca de Mi en CDMX"
                 path="/contacto"
-                description="Contacta a Velvet Tapicería. Cotiza tu retapizado por WhatsApp en menos de 5 minutos. Recolección a domicilio gratis en CDMX y Edomex."
+                description="Cotiza tu tapizado con Velvet Tapicería. Tapicería de muebles cerca de mi ubicación, tapicero a domicilio y servicio en Ciudad de México y Estado de México."
             />
             {/* ═══ HERO ═══ */}
             <section className="cp-hero">

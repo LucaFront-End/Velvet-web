@@ -13,8 +13,9 @@ export default function HomeV2() {
     return (
         <>
             <SEO
+                rawTitle="Velvet Tapicería en CDMX | Tapicería de Muebles y Tapicero a Domicilio"
                 path="/home-v2"
-                description="Velvet Tapicería: expertos en tapizado de muebles, tapicería de salas y retapizados personalizados. Tapicero a domicilio en CDMX y Estado de México. Telas premium y garantía."
+                description="¿Buscas tapicería cerca de mi? En Velvet Tapicería en CDMX retapizamos sillones, salas y sillas. Tapicería de muebles cerca de tu ubicación y tapicero a domicilio."
             />
             <HeroV2 />
             <ServicesBento />

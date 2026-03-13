@@ -12,12 +12,13 @@ const DEFAULT_DESCRIPTION =
 
 export default function SEO({
     title,
+    rawTitle,
     description = DEFAULT_DESCRIPTION,
     path = '',
     image,
     type = 'website',
 }) {
-    const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Tapizado de Muebles y Tapicero a Domicilio en CDMX y Edomex`
+    const fullTitle = rawTitle || (title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Tapizado de Muebles y Tapicero a Domicilio en CDMX y Edomex`)
     const url = `${BASE_URL}${path}`
 
     return (

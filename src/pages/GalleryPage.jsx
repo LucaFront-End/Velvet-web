@@ -174,9 +174,9 @@ export default function GalleryPage() {
         <div className="gallery-page" ref={pageRef}>
 
             <SEO
-                title="Galería de Proyectos"
+                rawTitle="Trabajos de Tapicería en CDMX | Tapizado de Sillones, Salas y Sillas"
                 path="/galeria"
-                description="Explorá nuestra galería de más de 200 proyectos de tapicería: salas, sillas y cabeceras. Antes y después de cada transformación."
+                description="Descubre nuestros trabajos de tapicería de muebles. Retapizado de sillones, salas y sillas con telas de calidad. Tapicería cerca de mi en CDMX y Estado de México."
             />
 
             {/* ═══ 1. HERO — Minimal, typographic ═══ */}

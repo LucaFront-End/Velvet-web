@@ -131,9 +131,9 @@ export default function AboutPage() {
         <div className="about-page" ref={pageRef}>
 
             <SEO
-                title="Nosotros"
+                rawTitle="Velvet Tapicería en CDMX | Expertos en Tapicería de Muebles"
                 path="/nosotros"
-                description="Conoce la historia de Velvet Tapicería. Desde 2016 transformando muebles en CDMX y Estado de México con telas premium, artesanía y pasión."
+                description="En Velvet Tapicería contamos con tapiceros expertos y asesoría de diseñador de interiores para elegir la mejor tela para tapizar sillones, salas y sillas."
             />
 
             {/* ═══ 1. HERO — Centered statement ═══ */}

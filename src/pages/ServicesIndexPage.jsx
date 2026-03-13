@@ -47,9 +47,9 @@ export default function ServicesIndexPage() {
         <div className="services-index-page" ref={pageRef}>
 
             <SEO
-                title="Servicios de Tapicería"
+                rawTitle="Servicios de Tapicería en CDMX | Tapizado de Muebles, Sillones y Salas"
                 path="/servicios"
-                description="Conoce todos nuestros servicios de tapicería: salas, sillas, cabeceras y catálogo de telas. Recolección a domicilio en CDMX y Edomex."
+                description="Tapicería de muebles, tapizado de salas, sillones y sillas. Si buscas tapicería de muebles cerca de mi ubicación o tapiceros cerca de mi, Velvet Tapicería te ayuda."
             />
 
             {/* ═══ HERO ═══ */}
