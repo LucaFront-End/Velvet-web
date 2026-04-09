@@ -332,7 +332,7 @@ export default function AboutPage() {
                         </p>
                         <div className="ab-cta-actions ab-stagger">
                             <a
-                                href="https://wa.me/5215568578613?text=Hola%2C%20me%20interesa%20cotizar%20un%20trabajo%20de%20tapicería"
+                                href="https://wa.me/5215568578613?text=SW-%20Hola%2C%20me%20interesa%20cotizar%20un%20trabajo%20de%20tapicería"
                                 className="ab-cta-whatsapp"
                                 target="_blank"
                                 rel="noopener noreferrer"

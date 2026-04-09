@@ -178,7 +178,7 @@ export default function Zones({ zona, whatsappUrl }) {
                         </div>
 
                         <a
-                            href={whatsappUrl || 'https://wa.me/5215568578613?text=Hola%2C%20quiero%20saber%20si%20cubren%20mi%20zona'}
+                            href={whatsappUrl || 'https://wa.me/5215568578613?text=SW-%20Hola%2C%20quiero%20saber%20si%20cubren%20mi%20zona'}
                             className="zones-cta"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -222,7 +222,7 @@ export default function Zones({ zona, whatsappUrl }) {
                                     onMouseLeave={handleZoneLeave}
                                 >
                                     <path
-                                        className={`zone-path ${zone.id.startsWith('cdmx') ? 'zone-cdmx' : 'zone-edomex'}${active?.id === zone.id ? ' active' : ''}`}
+                                        className={`zone-path ${zone.id === 'edomex-oriente' ? 'zone-edomex-oriente' : zone.id.startsWith('cdmx') ? 'zone-cdmx' : 'zone-edomex'}${active?.id === zone.id ? ' active' : ''}`}
                                         d={zonePaths[zone.id]}
                                     />
                                     <circle className="zone-dot" cx={zone.cx} cy={zone.cy} r="2.5" />
@@ -245,6 +245,10 @@ export default function Zones({ zona, whatsappUrl }) {
                             <div className="zones-legend-item">
                                 <span className="zones-legend-swatch zones-legend-edomex"></span>
                                 <span>Estado de México</span>
+                            </div>
+                            <div className="zones-legend-item">
+                                <span className="zones-legend-swatch zones-legend-oriente"></span>
+                                <span>Fuera de cobertura</span>
                             </div>
                         </div>
 

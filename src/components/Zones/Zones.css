@@ -303,6 +303,22 @@
     background: rgba(255, 255, 255, 0.03);
 }
 
+/* Oriente Edomex — highlighted in red (out of service area) */
+.zones-map .zone-edomex-oriente {
+    fill: rgba(180, 40, 40, 0.15);
+    stroke: rgba(180, 40, 40, 0.4);
+}
+
+.zones-map .zone-group:hover .zone-edomex-oriente {
+    fill: rgba(180, 40, 40, 0.25);
+    stroke: rgba(220, 60, 60, 0.7);
+}
+
+.zones-legend-oriente {
+    background: rgba(180, 40, 40, 0.4);
+    border-color: rgba(180, 40, 40, 0.6);
+}
+
 /* ---- Marquee carousel ---- */
 .zones-marquee-wrap {
     margin-top: var(--space-3xl);

@@ -32,7 +32,7 @@ export default function Domicilio({ whatsappUrl, zona }) {
         return () => observer.disconnect()
     }, [])
 
-    const defaultWaUrl = 'https://wa.me/5215568578613?text=Hola%2C%20quiero%20agendar%20una%20recolección'
+    const defaultWaUrl = 'https://wa.me/5215568578613?text=SW-%20Hola%2C%20quiero%20agendar%20una%20recolección'
 
     return (
         <section className="domicilio" id="domicilio" ref={sectionRef}>

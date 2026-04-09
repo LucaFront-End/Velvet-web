@@ -9,7 +9,7 @@ const contactCards = [
         icon: 'whatsapp',
         label: 'WhatsApp',
         value: '55 6857 8613',
-        href: 'https://wa.me/5215568578613?text=Hola%20Velvet%20Tapicería,%20me%20gustaría%20cotizar%20un%20retapizado.',
+        href: 'https://wa.me/5215568578613?text=SW-%20Hola%20Velvet%20Tapicería,%20me%20gustaría%20cotizar%20un%20retapizado.',
         accent: '#25D366',
     },
     {
@@ -116,7 +116,7 @@ export default function ContactPage() {
     const handleSubmit = (e) => {
         e.preventDefault()
         /* Build WhatsApp message */
-        const msg = `Hola Velvet Tapicería 👋\n\n` +
+        const msg = `SW- Hola Velvet Tapicería 👋\n\n` +
             `*Nombre:* ${form.name}\n` +
             `*Teléfono:* ${form.phone}\n` +
             `*Correo:* ${form.email}\n` +

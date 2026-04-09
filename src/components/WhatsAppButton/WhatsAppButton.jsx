@@ -5,7 +5,7 @@ import './WhatsAppButton.css'
    Floating WhatsApp button — visible on every page
    ══════════════════════════════════════════════ */
 const WA_NUMBER = '5215568578613'
-const WA_MESSAGE = 'SW-Hola, me interesa cotizar un trabajo de tapicería'
+const WA_MESSAGE = 'SW- Hola, me interesa cotizar un trabajo de tapicería'
 
 export default function WhatsAppButton() {
     const [visible, setVisible] = useState(false)

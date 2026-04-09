@@ -24,7 +24,7 @@ export default function FinalCTA({ whatsappUrl, title, desc }) {
         return () => observer.disconnect()
     }, [])
 
-    const defaultWaUrl = 'https://wa.me/5215568578613?text=Hola%2C%20me%20interesa%20cotizar%20un%20trabajo%20de%20tapicería'
+    const defaultWaUrl = 'https://wa.me/5215568578613?text=SW-%20Hola%2C%20me%20interesa%20cotizar%20un%20trabajo%20de%20tapicería'
 
     return (
         <section className="final-cta" ref={sectionRef}>

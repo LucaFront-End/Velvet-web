@@ -37,7 +37,7 @@ const serviceLinks = [
 
 export default function Footer() {
     const currentYear = new Date().getFullYear()
-    const whatsappUrl = 'https://wa.me/5215568578613?text=Hola%20Velvet%20Tapicería,%20me%20gustaría%20cotizar%20un%20retapizado.'
+    const whatsappUrl = 'https://wa.me/5215568578613?text=SW-%20Hola%20Velvet%20Tapicería,%20me%20gustaría%20cotizar%20un%20retapizado.'
 
     return (
         <footer className="footer">
