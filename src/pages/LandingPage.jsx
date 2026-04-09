@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import { getLandingBySlug } from '../data/landingPages'
 
@@ -14,15 +15,65 @@ import SEO from '../components/SEO/SEO'
 
 /* ══════════════════════════════════════════════
    LANDING PAGE — Dynamic zone-specific homepage
+   Fetches data from Wix CMS by slug.
    Same layout as Home, but with CMS-driven
-   title, excerpt, SEO, and WhatsApp link
+   title, excerpt, SEO, and WhatsApp link.
    ══════════════════════════════════════════════ */
 
 export default function LandingPage() {
     const { slug } = useParams()
-    const page = getLandingBySlug(slug)
+    const [page, setPage] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [notFound, setNotFound] = useState(false)
 
-    if (!page) return <Navigate to="/" replace />
+    useEffect(() => {
+        let cancelled = false
+
+        async function load() {
+            setLoading(true)
+            setNotFound(false)
+
+            const data = await getLandingBySlug(slug)
+
+            if (cancelled) return
+
+            if (!data) {
+                setNotFound(true)
+            } else {
+                setPage(data)
+            }
+            setLoading(false)
+        }
+
+        load()
+        return () => { cancelled = true }
+    }, [slug])
+
+    // Redirect to home if page not found
+    if (notFound) return <Navigate to="/" replace />
+
+    // Loading skeleton
+    if (loading || !page) {
+        return (
+            <div className="landing-loading" style={{
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'var(--color-bg, #0a0a0a)',
+            }}>
+                <div style={{
+                    width: 40,
+                    height: 40,
+                    border: '3px solid rgba(255,255,255,0.1)',
+                    borderTopColor: 'var(--color-gold, #c4a265)',
+                    borderRadius: '50%',
+                    animation: 'spin 0.8s linear infinite',
+                }} />
+                <style>{`@keyframes spin { to { transform: rotate(360deg) }}`}</style>
+            </div>
+        )
+    }
 
     return (
         <>
