@@ -9,18 +9,17 @@ import wixClient from '../lib/wixClient'
 // ── Collection name in Wix CMS ──
 const COLLECTION_ID = 'CMSInicioDinamico'
 
-// ── Field mapping: CMS field keys → our model ──
+// ── Field mapping: Wix camelCase keys → our model ──
 function mapCmsItem(item) {
-    const data = item.data || item
     return {
-        id: data._id || data.ID || '',
-        title: data.title || data.Title || '',
-        zona: data.zona || data.Zona || '',
-        excerpt: data.excerpt || data.Excerpt || '',
-        seoTitle: data.tituloSeo || data['Titulo de SEO'] || data.titulo_de_seo || '',
-        metaDescription: data.metadescripcion || data['Metadescripción'] || data.metadescripción || '',
-        whatsappUrl: data.urlWhatsapp || data['URL de whatsapp'] || data.url_de_whatsapp || '',
-        slug: slugify(data.title || data.Title || ''),
+        id: item._id || '',
+        title: item.title || '',
+        zona: item.zona || '',
+        excerpt: item.excerpt || '',
+        seoTitle: item.tituloDeSeo || '',
+        metaDescription: item.metadescripcin || item.metadescripcion || '',
+        whatsappUrl: item.urlDeWhatsapp || '',
+        slug: slugify(item.title || ''),
     }
 }
 
@@ -67,12 +66,12 @@ export async function fetchLandingPages() {
         if (!wixClient) throw new Error('Wix client not configured')
 
         const response = await wixClient.items
-            .queryDataItems({ dataCollectionId: COLLECTION_ID })
+            .query(COLLECTION_ID)
             .find()
 
         const pages = response.items
             .map(mapCmsItem)
-            .filter((p) => p.title && p.slug) // skip incomplete entries
+            .filter((p) => p.title && p.slug && p.zona) // skip incomplete entries
 
         if (pages.length > 0) {
             _cache = pages
