@@ -81,7 +81,7 @@ const marqueeAreas = [
     'Cuajimalpa', 'Iztapalapa', 'Tlalpan', 'GAM',
 ]
 
-export default function Zones() {
+export default function Zones({ zona, whatsappUrl }) {
     const [active, setActive] = useState(null)
     const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0 })
     const sectionRef = useRef(null)
@@ -156,9 +156,10 @@ export default function Zones() {
                             al alcance
                         </h2>
                         <p className="zones-desc">
-                            Cubrimos Ciudad de México y los principales municipios del
-                            Estado de México. Recolección y entrega sin costo adicional
-                            en todas las zonas marcadas.
+                            {zona
+                                ? `Cubrimos ${zona} y toda la zona metropolitana. Recolección y entrega sin costo adicional en todas las zonas marcadas.`
+                                : 'Cubrimos Ciudad de México y los principales municipios del Estado de México. Recolección y entrega sin costo adicional en todas las zonas marcadas.'
+                            }
                         </p>
 
                         <div className="zones-stats">
@@ -177,7 +178,7 @@ export default function Zones() {
                         </div>
 
                         <a
-                            href="https://wa.me/5215568578613?text=Hola%2C%20quiero%20saber%20si%20cubren%20mi%20zona"
+                            href={whatsappUrl || 'https://wa.me/5215568578613?text=Hola%2C%20quiero%20saber%20si%20cubren%20mi%20zona'}
                             className="zones-cta"
                             target="_blank"
                             rel="noopener noreferrer"

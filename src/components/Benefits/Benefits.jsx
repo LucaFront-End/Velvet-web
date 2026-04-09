@@ -33,7 +33,7 @@ const benefits = [
     },
     {
         title: 'Recolección gratis',
-        desc: 'Pasamos a recoger y entregar tu mueble sin costo adicional en CDMX y zona metropolitana.',
+        desc: null, // set dynamically in render
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="1" y="3" width="15" height="13" rx="2" />
@@ -66,7 +66,7 @@ const benefits = [
     },
 ]
 
-export default function Benefits() {
+export default function Benefits({ zona }) {
     const sectionRef = useRef(null)
 
     useEffect(() => {
@@ -132,7 +132,7 @@ export default function Benefits() {
                         <div className="benefit-card" key={i}>
                             <div className="benefit-icon">{b.icon}</div>
                             <h3 className="benefit-card-title">{b.title}</h3>
-                            <p className="benefit-card-desc">{b.desc}</p>
+                            <p className="benefit-card-desc">{b.desc || `Pasamos a recoger y entregar tu mueble sin costo adicional en ${zona || 'CDMX y zona metropolitana'}.`}</p>
                         </div>
                     ))}
                 </div>

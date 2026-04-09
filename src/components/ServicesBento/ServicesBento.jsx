@@ -22,7 +22,7 @@ const services = [
     },
 ]
 
-export default function ServicesBento() {
+export default function ServicesBento({ zona }) {
     const sectionRef = useRef(null)
 
     // Scroll-reveal with IntersectionObserver
@@ -62,7 +62,7 @@ export default function ServicesBento() {
                     </h2>
                     <p className="services-subtitle">
                         Especialistas en tapizado de muebles con tela para tapizar de la más alta calidad.
-                        Tapicero a domicilio en CDMX y Estado de México.
+                        Tapicero a domicilio en {zona || 'CDMX y Estado de México'}.
                     </p>
                 </div>
 
@@ -120,7 +120,7 @@ export default function ServicesBento() {
                                 <div className="bento-card-image">
                                     <img
                                         src={service.image}
-                                        alt={`${service.title} — tapizado de muebles en CDMX`}
+                                        alt={`${service.title} — tapizado de muebles en ${zona || 'CDMX'}`}
                                         loading="lazy"
                                     />
                                     <div className="bento-card-overlay" />

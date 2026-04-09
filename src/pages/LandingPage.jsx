@@ -86,15 +86,16 @@ export default function LandingPage() {
                 preTitle={`Tapicería en ${page.zona}`}
                 subtitle={page.excerpt}
             />
-            <ServicesBento />
+            <ServicesBento zona={page.zona} />
             <Domicilio
                 whatsappUrl={page.whatsappUrl}
+                zona={page.zona}
             />
-            <Zones />
-            <Benefits />
+            <Zones zona={page.zona} whatsappUrl={page.whatsappUrl} />
+            <Benefits zona={page.zona} />
             <BeforeAfter />
             <Testimonials />
-            <FAQ />
+            <FAQ zona={page.zona} />
             <FinalCTA
                 whatsappUrl={page.whatsappUrl}
                 title={<>¿Quieres renovar tus muebles en <em>{page.zona}</em>?</>}

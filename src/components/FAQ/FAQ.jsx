@@ -13,7 +13,7 @@ const faqs = [
     },
     {
         q: '¿Recogen y entregan a domicilio?',
-        a: 'Sí. Nuestro servicio de tapicero a domicilio cubre toda la Ciudad de México y principales municipios del Estado de México sin costo adicional por la recolección.',
+        a: null, // set dynamically in render
     },
     {
         q: '¿Cuánto tiempo tarda el retapizado?',
@@ -25,7 +25,7 @@ const faqs = [
     },
 ]
 
-export default function FAQ() {
+export default function FAQ({ zona }) {
     const [active, setActive] = useState(0)
     const sectionRef = useRef(null)
 
@@ -81,7 +81,7 @@ export default function FAQ() {
                                 </span>
                             </button>
                             <div className="faq-answer">
-                                <div className="faq-answer-inner">{item.a}</div>
+                                <div className="faq-answer-inner">{item.a || `Sí. Nuestro servicio de tapicero a domicilio cubre toda ${zona ? `la zona de ${zona}` : 'la Ciudad de México y principales municipios del Estado de México'} sin costo adicional por la recolección.`}</div>
                             </div>
                         </div>
                     ))}

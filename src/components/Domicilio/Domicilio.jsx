@@ -9,7 +9,7 @@ const steps = [
     { num: '04', title: 'Entrega', desc: 'Tu mueble renovado de vuelta en tu casa, con garantía.' },
 ]
 
-export default function Domicilio({ whatsappUrl }) {
+export default function Domicilio({ whatsappUrl, zona }) {
     const sectionRef = useRef(null)
 
     useEffect(() => {
@@ -47,8 +47,7 @@ export default function Domicilio({ whatsappUrl }) {
                         </h2>
                         <p className="domicilio-intro">
                             No mueves nada. Nuestro equipo recoge y entrega tus muebles en
-                            la puerta de tu casa — cobertura completa en Ciudad de México
-                            y Estado de México.
+                            la puerta de tu casa — cobertura completa en {zona || 'Ciudad de México y Estado de México'}.
                         </p>
                     </div>
                 </div>
