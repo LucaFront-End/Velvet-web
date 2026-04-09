@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './FinalCTA.css'
 
-export default function FinalCTA() {
+export default function FinalCTA({ whatsappUrl, title, desc }) {
     const sectionRef = useRef(null)
 
     useEffect(() => {
@@ -24,6 +24,8 @@ export default function FinalCTA() {
         return () => observer.disconnect()
     }, [])
 
+    const defaultWaUrl = 'https://wa.me/5215568578613?text=Hola%2C%20me%20interesa%20cotizar%20un%20trabajo%20de%20tapicería'
+
     return (
         <section className="final-cta" ref={sectionRef}>
             <div className="container">
@@ -36,17 +38,16 @@ export default function FinalCTA() {
                     </div>
 
                     <h2 className="final-cta-title">
-                        ¿Listo para renovar <em>tus muebles</em>?
+                        {title || <>¿Listo para renovar <em>tus muebles</em>?</>}
                     </h2>
 
                     <p className="final-cta-desc">
-                        Cotiza gratis en minutos. Envíanos fotos de tu mueble por WhatsApp y
-                        recibe tu presupuesto detallado con opciones de tela sin compromiso.
+                        {desc || 'Cotiza gratis en minutos. Envíanos fotos de tu mueble por WhatsApp y recibe tu presupuesto detallado con opciones de tela sin compromiso.'}
                     </p>
 
                     <div className="final-cta-actions">
                         <a
-                            href="https://wa.me/5215568578613?text=Hola%2C%20me%20interesa%20cotizar%20un%20trabajo%20de%20tapicería"
+                            href={whatsappUrl || defaultWaUrl}
                             className="final-cta-whatsapp"
                             target="_blank"
                             rel="noopener noreferrer"

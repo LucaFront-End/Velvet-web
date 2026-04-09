@@ -11,6 +11,7 @@ import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import GalleryPage from './pages/GalleryPage'
 import ServicesIndexPage from './pages/ServicesIndexPage'
+import LandingPage from './pages/LandingPage'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="galeria" element={<GalleryPage />} />
             <Route path="contacto" element={<ContactPage />} />
             <Route path="nosotros" element={<AboutPage />} />
+            <Route path=":slug" element={<LandingPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

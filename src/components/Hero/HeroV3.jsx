@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './HeroV3.css'
 
-export default function HeroV3() {
+export default function HeroV3({ preTitle, subtitle }) {
     const heroRef = useRef(null)
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export default function HeroV3() {
 
                 {/* ── Background Title (Huge) ── */}
                 <h1 className="hero-v3__bg-title">
-                    <span className="hero-v3__pre-title">Tapicería</span>
+                    <span className="hero-v3__pre-title">{preTitle || 'Tapicería'}</span>
                     VELVET
                 </h1>
 
@@ -38,9 +38,7 @@ export default function HeroV3() {
                     {/* Left Column: Description */}
                     <div className="hero-v3__bottom-left">
                         <p className="hero-v3__desc">
-                            Nuestra misión es transformar muebles con historia.
-                            Tapicería artesanal, materiales nobles y diseño
-                            de autor para espacios únicos.
+                            {subtitle || 'Nuestra misión es transformar muebles con historia. Tapicería artesanal, materiales nobles y diseño de autor para espacios únicos.'}
                         </p>
                     </div>
 

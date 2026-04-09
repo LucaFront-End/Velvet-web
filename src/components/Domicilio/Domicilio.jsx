@@ -9,7 +9,7 @@ const steps = [
     { num: '04', title: 'Entrega', desc: 'Tu mueble renovado de vuelta en tu casa, con garantía.' },
 ]
 
-export default function Domicilio() {
+export default function Domicilio({ whatsappUrl }) {
     const sectionRef = useRef(null)
 
     useEffect(() => {
@@ -31,6 +31,8 @@ export default function Domicilio() {
 
         return () => observer.disconnect()
     }, [])
+
+    const defaultWaUrl = 'https://wa.me/5215568578613?text=Hola%2C%20quiero%20agendar%20una%20recolección'
 
     return (
         <section className="domicilio" id="domicilio" ref={sectionRef}>
@@ -81,7 +83,7 @@ export default function Domicilio() {
 
                     <div className="domicilio-actions">
                         <a
-                            href="https://wa.me/5215568578613?text=Hola%2C%20quiero%20agendar%20una%20recolección"
+                            href={whatsappUrl || defaultWaUrl}
                             className="btn btn-primary"
                             target="_blank"
                             rel="noopener noreferrer"
