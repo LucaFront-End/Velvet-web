@@ -19,7 +19,7 @@ function mapCmsItem(item) {
         seoTitle: item.tituloDeSeo || '',
         metaDescription: item.metadescripcin || item.metadescripcion || '',
         whatsappUrl: item.urlDeWhatsapp || '',
-        slug: slugify(item.title || ''),
+        slug: item.slug || slugify(item.title || ''),
     }
 }
 
@@ -71,7 +71,7 @@ export async function fetchLandingPages() {
 
         const pages = response.items
             .map(mapCmsItem)
-            .filter((p) => p.title && p.slug && p.zona) // skip incomplete entries
+            .filter((p) => p.slug) // skip entries without a slug
 
         if (pages.length > 0) {
             _cache = pages

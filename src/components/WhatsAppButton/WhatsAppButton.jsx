@@ -3,11 +3,13 @@ import './WhatsAppButton.css'
 
 /* ══════════════════════════════════════════════
    Floating WhatsApp button — visible on every page
+   Accepts optional `url` prop for landing-specific links
    ══════════════════════════════════════════════ */
 const WA_NUMBER = '5215568578613'
 const WA_MESSAGE = 'SW- Hola, me interesa cotizar un trabajo de tapicería'
+const DEFAULT_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`
 
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ url }) {
     const [visible, setVisible] = useState(false)
     const [pulse, setPulse] = useState(false)
 
@@ -22,11 +24,11 @@ export default function WhatsAppButton() {
         return () => { clearTimeout(show); clearInterval(interval) }
     }, [])
 
-    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`
+    const href = url || DEFAULT_URL
 
     return (
         <a
-            href={url}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
             className={`wa-fab ${visible ? 'wa-fab--visible' : ''} ${pulse ? 'wa-fab--pulse' : ''}`}

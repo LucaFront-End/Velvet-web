@@ -143,6 +143,28 @@
     transform: translateX(3px);
 }
 
+/* Address link */
+.zones-address {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-lg);
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    transition: color 0.3s var(--ease-out);
+    line-height: 1.4;
+}
+
+.zones-address:hover {
+    color: var(--color-gold);
+}
+
+.zones-address svg {
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
 /* ---- Right: Map ---- */
 .zones-map-container {
     position: relative;

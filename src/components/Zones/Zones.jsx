@@ -189,6 +189,20 @@ export default function Zones({ zona, whatsappUrl }) {
                                 <polyline points="12 5 19 12 12 19" />
                             </svg>
                         </a>
+
+                        {/* Physical address */}
+                        <a
+                            href="https://share.google/QJk61t6JMe1AHKqsO"
+                            className="zones-address"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            Cto. Empresarial 13, San Fernando, 52765 Naucalpan, Méx.
+                        </a>
                     </div>
 
                     {/* ---- Right: SVG Map ---- */}

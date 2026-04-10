@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import { getLandingBySlug } from '../data/landingPages'
+import { useWhatsAppContext } from '../App'
 
 import Hero from '../components/Hero/HeroV3'
 import ServicesBento from '../components/ServicesBento/ServicesBento'
@@ -17,7 +18,8 @@ import SEO from '../components/SEO/SEO'
    LANDING PAGE — Dynamic zone-specific homepage
    Fetches data from Wix CMS by slug.
    Same layout as Home, but with CMS-driven
-   title, excerpt, SEO, and WhatsApp link.
+   title, excerpt, SEO, WhatsApp link, and
+   floating WhatsApp button per landing.
    ══════════════════════════════════════════════ */
 
 export default function LandingPage() {
@@ -25,6 +27,7 @@ export default function LandingPage() {
     const [page, setPage] = useState(null)
     const [loading, setLoading] = useState(true)
     const [notFound, setNotFound] = useState(false)
+    const { setWhatsappUrl } = useWhatsAppContext()
 
     useEffect(() => {
         let cancelled = false
@@ -41,13 +44,21 @@ export default function LandingPage() {
                 setNotFound(true)
             } else {
                 setPage(data)
+                // Set the floating WhatsApp button URL for this landing
+                if (data.whatsappUrl) {
+                    setWhatsappUrl(data.whatsappUrl)
+                }
             }
             setLoading(false)
         }
 
         load()
-        return () => { cancelled = true }
-    }, [slug])
+        return () => {
+            cancelled = true
+            // Reset the floating WhatsApp button when leaving the landing
+            setWhatsappUrl(null)
+        }
+    }, [slug, setWhatsappUrl])
 
     // Redirect to home if page not found
     if (notFound) return <Navigate to="/" replace />
@@ -85,6 +96,7 @@ export default function LandingPage() {
             <Hero
                 preTitle={`Tapicería en ${page.zona}`}
                 subtitle={page.excerpt}
+                heroTitle={page.title}
             />
             <ServicesBento zona={page.zona} />
             <Domicilio

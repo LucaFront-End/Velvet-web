@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './HeroV3.css'
 
-export default function HeroV3({ preTitle, subtitle }) {
+export default function HeroV3({ preTitle, subtitle, heroTitle }) {
     const heroRef = useRef(null)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function HeroV3({ preTitle, subtitle }) {
                 {/* ── Background Title (Huge) ── */}
                 <h1 className="hero-v3__bg-title">
                     <span className="hero-v3__pre-title">{preTitle || 'Tapicería'}</span>
-                    VELVET
+                    {heroTitle || 'VELVET'}
                 </h1>
 
                 {/* ── Main Visual (Stage) ── */}
