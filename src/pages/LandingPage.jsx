@@ -96,6 +96,7 @@ export default function LandingPage() {
             <Hero
                 preTitle={page.title || `Tapicería en ${page.zona}`}
                 subtitle={page.excerpt}
+                whatsappUrl={page.whatsappUrl}
             />
             <ServicesBento zona={page.zona} />
             <Domicilio

@@ -431,7 +431,7 @@
     align-items: center;
     gap: var(--space-sm);
     padding: 0.9rem 2rem;
-    background-color: #25D366;
+    background-color: var(--color-gold, #c4a265);
     color: #fff;
     font-family: var(--font-body);
     font-size: var(--text-sm);
@@ -458,9 +458,9 @@
 }
 
 .cp-submit:hover {
-    background-color: #1fbe5a;
+    background-color: #b08a3e;
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(37, 211, 102, 0.25);
+    box-shadow: 0 12px 32px rgba(196, 162, 101, 0.3);
 }
 
 .cp-submit svg {
@@ -540,6 +540,21 @@
 
 .cp-map-header {
     padding: var(--space-3xl) 0 var(--space-2xl);
+}
+
+.cp-map-link {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-size: var(--text-xs);
+    color: var(--color-gold);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s;
+}
+
+.cp-map-link:hover {
+    opacity: 0.7;
 }
 
 .cp-map-embed {

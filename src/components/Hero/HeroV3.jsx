@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './HeroV3.css'
 
-export default function HeroV3({ preTitle, subtitle }) {
+export default function HeroV3({ preTitle, subtitle, whatsappUrl }) {
     const heroRef = useRef(null)
 
     useEffect(() => {
@@ -44,12 +44,21 @@ export default function HeroV3({ preTitle, subtitle }) {
 
                     {/* Right Column: CTA */}
                     <div className="hero-v3__bottom-right">
-                        <Link to="/contacto" className="hero-v3__cta-pill">
-                            Cotizar Ahora
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                <path d="M1 11L11 1M11 1H3M11 1V9" />
-                            </svg>
-                        </Link>
+                        {whatsappUrl ? (
+                            <a href={whatsappUrl} className="hero-v3__cta-pill" target="_blank" rel="noopener noreferrer">
+                                Cotizar Ahora
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                    <path d="M1 11L11 1M11 1H3M11 1V9" />
+                                </svg>
+                            </a>
+                        ) : (
+                            <Link to="/contacto" className="hero-v3__cta-pill">
+                                Cotizar Ahora
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                    <path d="M1 11L11 1M11 1H3M11 1V9" />
+                                </svg>
+                            </Link>
+                        )}
                     </div>
 
                 </div>
