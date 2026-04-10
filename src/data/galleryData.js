@@ -12,7 +12,7 @@ const COLLECTION_ID = 'CMSGaleria'
  * Wix format: wix:image://v1/<media_id>/<filename>#originWidth=W&originHeight=H
  * Public URL:  https://static.wixstatic.com/media/<media_id>
  */
-function wixImageToUrl(wixUrl, width = 800) {
+function wixImageToUrl(wixUrl) {
     if (!wixUrl) return ''
     // Already a normal URL
     if (wixUrl.startsWith('http')) return wixUrl
@@ -22,14 +22,14 @@ function wixImageToUrl(wixUrl, width = 800) {
     if (!match) return ''
 
     const mediaId = match[1]
-    return `https://static.wixstatic.com/media/${mediaId}/v1/fill/w_${width},q_80/${mediaId}`
+    return `https://static.wixstatic.com/media/${mediaId}`
 }
 
 function mapCmsItem(item, index) {
     return {
         id: `cms-${item._id || index}`,
         cat: (item.categoria || item.categora || '').toLowerCase().trim() || 'otros',
-        src: wixImageToUrl(item.image || item.imagen, 800),
+        src: wixImageToUrl(item.image || item.imagen),
         title: item.title || '',
         fabric: item.tela || '',
         cotizarUrl: item.enlaceDeBotonDeCotizar || item.enlaceDeBottonDeCotizar || '',
