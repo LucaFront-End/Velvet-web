@@ -1,43 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO/SEO'
+import { fetchGalleryItems, buildCategories } from '../data/galleryData'
 import './GalleryPage.css'
 
 /* ══════════════════════════════════════════════
    GALLERY PAGE — Masonry + lightbox + filters
+   Now connected to Wix CMS (CMSGaleria)
    ══════════════════════════════════════════════ */
-
-const categories = [
-    { key: 'todo', label: 'Todo' },
-    { key: 'salas', label: 'Salas' },
-    { key: 'sillas', label: 'Sillas' },
-    { key: 'cabeceras', label: 'Cabeceras' },
-]
-
-const gallery = [
-    // Salas — 6 items
-    { id: 1, cat: 'salas', src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', title: 'Sala terciopelo esmeralda', fabric: 'Terciopelo' },
-    { id: 2, cat: 'salas', src: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80', title: 'Sofá tres cuerpos', fabric: 'Lino Natural' },
-    { id: 3, cat: 'salas', src: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800&q=80', title: 'Sillón capitoneado', fabric: 'Piel Sintética' },
-    { id: 4, cat: 'salas', src: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=800&q=80', title: 'Sala modular gris', fabric: 'Chenille' },
-    { id: 5, cat: 'salas', src: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&q=80', title: 'Sala familiar renovada', fabric: 'Antimanchas' },
-    { id: 6, cat: 'salas', src: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800&q=80', title: 'Sofá curvo moderno', fabric: 'Terciopelo Azul' },
-
-    // Sillas — 5 items
-    { id: 7, cat: 'sillas', src: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=800&q=80', title: 'Sillas comedor clásicas', fabric: 'Lino' },
-    { id: 8, cat: 'sillas', src: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&q=80', title: 'Silla accent moderna', fabric: 'Microfibra' },
-    { id: 9, cat: 'sillas', src: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&q=80', title: 'Sillas tapizadas lino', fabric: 'Lino Natural' },
-    { id: 10, cat: 'sillas', src: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80', title: 'Banco restaurado', fabric: 'Vinipiel' },
-    { id: 11, cat: 'sillas', src: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800&q=80', title: 'Silla de oficina premium', fabric: 'Piel Sintética' },
-
-    // Cabeceras — 5 items
-    { id: 12, cat: 'cabeceras', src: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80', title: 'Cabecera capitoneada blanca', fabric: 'Terciopelo' },
-    { id: 13, cat: 'cabeceras', src: 'https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=800&q=80', title: 'Cabecera king terciopelo', fabric: 'Terciopelo Rosa' },
-    { id: 14, cat: 'cabeceras', src: 'https://images.unsplash.com/photo-1617806501553-e8dfb8306aba?w=800&q=80', title: 'Cabecera panel madera', fabric: 'Suede' },
-    { id: 15, cat: 'cabeceras', src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80', title: 'Recámara completa', fabric: 'Lino' },
-    { id: 16, cat: 'cabeceras', src: 'https://images.unsplash.com/photo-1616627561950-9f746e330187?w=800&q=80', title: 'Cabecera bastones tela', fabric: 'Bouclé' },
-
-]
 
 /* Featured projects with larger images + more detail */
 const featured = [
@@ -79,6 +49,11 @@ function Lightbox({ item, onClose, onNav }) {
 
     if (!item) return null
 
+    // For Unsplash images, swap to higher res; for CMS images, use as-is
+    const highResSrc = item.src.includes('unsplash.com')
+        ? item.src.replace('w=800', 'w=1400')
+        : item.src
+
     return (
         <div className="gal-lightbox" onClick={onClose}>
             <div className="gal-lightbox-inner" onClick={(e) => e.stopPropagation()}>
@@ -90,7 +65,7 @@ function Lightbox({ item, onClose, onNav }) {
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6" /></svg>
                 </button>
 
-                <img src={item.src.replace('w=800', 'w=1400')} alt={item.title} className="gal-lightbox-img" />
+                <img src={highResSrc} alt={item.title} className="gal-lightbox-img" />
 
                 <button className="gal-lightbox-arrow gal-lightbox-next" onClick={() => onNav(1)} aria-label="Siguiente">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
@@ -98,7 +73,7 @@ function Lightbox({ item, onClose, onNav }) {
 
                 <div className="gal-lightbox-info">
                     <h3 className="gal-lightbox-title">{item.title}</h3>
-                    <span className="gal-lightbox-fabric">{item.fabric}</span>
+                    {item.fabric && <span className="gal-lightbox-fabric">{item.fabric}</span>}
                 </div>
             </div>
         </div>
@@ -113,6 +88,26 @@ export default function GalleryPage() {
     const featuredRef = useRef(null)
     const [isDragging, setIsDragging] = useState(false)
     const dragStart = useRef({ x: 0, scrollLeft: 0 })
+
+    // CMS data state
+    const [gallery, setGallery] = useState([])
+    const [categories, setCategories] = useState([{ key: 'todo', label: 'Todo' }])
+    const [loading, setLoading] = useState(true)
+
+    // Fetch gallery from CMS
+    useEffect(() => {
+        let cancelled = false
+        async function load() {
+            setLoading(true)
+            const items = await fetchGalleryItems()
+            if (cancelled) return
+            setGallery(items)
+            setCategories(buildCategories(items))
+            setLoading(false)
+        }
+        load()
+        return () => { cancelled = true }
+    }, [])
 
     const filtered = activeFilter === 'todo' ? gallery : gallery.filter((g) => g.cat === activeFilter)
 
@@ -225,9 +220,9 @@ export default function GalleryPage() {
                                     <img src={item.src} alt={item.title} loading="lazy" />
                                 </div>
                                 <div className="gal-card-overlay">
-                                    <span className="gal-card-cat">{categories.find(c => c.key === item.cat)?.label}</span>
-                                    <h3 className="gal-card-title">{item.title}</h3>
-                                    <span className="gal-card-fabric">{item.fabric}</span>
+                                    {item.cat && <span className="gal-card-cat">{categories.find(c => c.key === item.cat)?.label || item.cat}</span>}
+                                    {item.title && <h3 className="gal-card-title">{item.title}</h3>}
+                                    {item.fabric && <span className="gal-card-fabric">{item.fabric}</span>}
                                 </div>
                                 <div className="gal-card-zoom">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
