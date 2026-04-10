@@ -94,9 +94,8 @@ export default function LandingPage() {
                 description={page.metaDescription}
             />
             <Hero
-                preTitle={`Tapicería en ${page.zona}`}
+                preTitle={page.title || `Tapicería en ${page.zona}`}
                 subtitle={page.excerpt}
-                heroTitle={page.title}
             />
             <ServicesBento zona={page.zona} />
             <Domicilio
