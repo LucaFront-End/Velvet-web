@@ -5,34 +5,10 @@ import { fetchGalleryItems, buildCategories } from '../data/galleryData'
 import './GalleryPage.css'
 
 /* ══════════════════════════════════════════════
-   GALLERY PAGE — Masonry + lightbox + filters
-   Now connected to Wix CMS (CMSGaleria)
+   GALLERY PAGE — 100% CMS-driven
+   Masonry grid + lightbox + dynamic filters
+   All content managed from Wix CMS (CMSGaleria)
    ══════════════════════════════════════════════ */
-
-/* Featured projects with larger images + more detail */
-const featured = [
-    {
-        title: 'Sala Terciopelo Esmeralda',
-        desc: 'Retapizado completo de sala seccional con terciopelo importado. Incluye cambio de espuma de alta densidad y refuerzo estructural.',
-        fabric: 'Terciopelo Italiano',
-        time: '12 días',
-        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80',
-    },
-    {
-        title: 'Cabecera King Capitoneada',
-        desc: 'Cabecera fabricada a medida para recámara principal. Diseño capitoneado con marco de madera reforzada.',
-        fabric: 'Terciopelo Rosa Cuarzo',
-        time: '8 días',
-        image: 'https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=1200&q=80',
-    },
-    {
-        title: 'Interior Deportivo Custom',
-        desc: 'Retapizado completo del interior: asientos, cielo, paneles y volante. Materiales resistentes a UV y desgaste.',
-        fabric: 'Alcántara + Piel',
-        time: '15 días',
-        image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1200&q=80',
-    },
-]
 
 /* ═══════════ Lightbox ═══════════ */
 function Lightbox({ item, onClose, onNav }) {
@@ -49,11 +25,6 @@ function Lightbox({ item, onClose, onNav }) {
 
     if (!item) return null
 
-    // For Unsplash images, swap to higher res; for CMS images, use as-is
-    const highResSrc = item.src.includes('unsplash.com')
-        ? item.src.replace('w=800', 'w=1400')
-        : item.src
-
     return (
         <div className="gal-lightbox" onClick={onClose}>
             <div className="gal-lightbox-inner" onClick={(e) => e.stopPropagation()}>
@@ -65,14 +36,14 @@ function Lightbox({ item, onClose, onNav }) {
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6" /></svg>
                 </button>
 
-                <img src={highResSrc} alt={item.title} className="gal-lightbox-img" />
+                <img src={item.src} alt={item.title || 'Proyecto de tapicería'} className="gal-lightbox-img" />
 
                 <button className="gal-lightbox-arrow gal-lightbox-next" onClick={() => onNav(1)} aria-label="Siguiente">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
                 </button>
 
                 <div className="gal-lightbox-info">
-                    <h3 className="gal-lightbox-title">{item.title}</h3>
+                    {item.title && <h3 className="gal-lightbox-title">{item.title}</h3>}
                     {item.fabric && <span className="gal-lightbox-fabric">{item.fabric}</span>}
                 </div>
             </div>
@@ -85,9 +56,6 @@ export default function GalleryPage() {
     const pageRef = useRef(null)
     const [activeFilter, setActiveFilter] = useState('todo')
     const [lightboxIdx, setLightboxIdx] = useState(null)
-    const featuredRef = useRef(null)
-    const [isDragging, setIsDragging] = useState(false)
-    const dragStart = useRef({ x: 0, scrollLeft: 0 })
 
     // CMS data state
     const [gallery, setGallery] = useState([])
@@ -135,7 +103,7 @@ export default function GalleryPage() {
         )
         page.querySelectorAll('.gal-reveal').forEach((el) => observer.observe(el))
         return () => { observer.disconnect(); timeouts.forEach(clearTimeout) }
-    }, [activeFilter])
+    }, [activeFilter, loading])
 
     /* Lightbox nav */
     const navLightbox = useCallback((dir) => {
@@ -147,23 +115,6 @@ export default function GalleryPage() {
             return next
         })
     }, [filtered.length])
-
-    /* Horizontal drag for featured scroller */
-    const onDragStart = (e) => {
-        const container = featuredRef.current
-        if (!container) return
-        setIsDragging(true)
-        dragStart.current = { x: e.pageX || e.touches?.[0]?.pageX, scrollLeft: container.scrollLeft }
-    }
-    const onDragMove = (e) => {
-        if (!isDragging) return
-        const container = featuredRef.current
-        if (!container) return
-        const x = e.pageX || e.touches?.[0]?.pageX
-        const walk = (x - dragStart.current.x) * 1.5
-        container.scrollLeft = dragStart.current.scrollLeft - walk
-    }
-    const onDragEnd = () => setIsDragging(false)
 
     return (
         <div className="gallery-page" ref={pageRef}>
@@ -183,8 +134,7 @@ export default function GalleryPage() {
                             Cada proyecto cuenta <em>su propia historia</em>
                         </h1>
                         <p className="gal-hero-sub gal-stagger">
-                            Más de 200 muebles transformados. Explorá nuestros trabajos
-                            y encontrá inspiración para tu próximo proyecto.
+                            Explorá nuestros trabajos y encontrá inspiración para tu próximo proyecto.
                         </p>
                     </div>
                 </div>
@@ -194,104 +144,93 @@ export default function GalleryPage() {
             <section className="gal-portfolio">
                 <div className="container">
 
-                    {/* Filters */}
-                    <div className="gal-filters gal-reveal">
-                        {categories.map((c) => (
-                            <button
-                                key={c.key}
-                                className={`gal-filter-btn ${activeFilter === c.key ? 'active' : ''}`}
-                                onClick={() => setActiveFilter(c.key)}
-                            >
-                                {c.label}
-                            </button>
-                        ))}
-                        <span className="gal-counter">{filtered.length} proyectos</span>
-                    </div>
+                    {/* Filters — only show if items have categories */}
+                    {categories.length > 1 && (
+                        <div className="gal-filters gal-reveal">
+                            {categories.map((c) => (
+                                <button
+                                    key={c.key}
+                                    className={`gal-filter-btn ${activeFilter === c.key ? 'active' : ''}`}
+                                    onClick={() => setActiveFilter(c.key)}
+                                >
+                                    {c.label}
+                                </button>
+                            ))}
+                            <span className="gal-counter">{filtered.length} proyectos</span>
+                        </div>
+                    )}
+
+                    {/* Loading state */}
+                    {loading && (
+                        <div className="gal-loading gal-reveal" style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            padding: 'var(--space-4xl) 0',
+                        }}>
+                            <div style={{
+                                width: 40,
+                                height: 40,
+                                border: '3px solid rgba(255,255,255,0.1)',
+                                borderTopColor: 'var(--color-gold, #c4a265)',
+                                borderRadius: '50%',
+                                animation: 'spin 0.8s linear infinite',
+                            }} />
+                            <style>{`@keyframes spin { to { transform: rotate(360deg) }}`}</style>
+                        </div>
+                    )}
+
+                    {/* Empty state */}
+                    {!loading && gallery.length === 0 && (
+                        <div className="gal-empty gal-reveal" style={{
+                            textAlign: 'center',
+                            padding: 'var(--space-4xl) 0',
+                            color: 'rgba(255,255,255,0.4)',
+                        }}>
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ marginBottom: 16, opacity: 0.3 }}>
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <polyline points="21 15 16 10 5 21" />
+                            </svg>
+                            <p style={{ fontSize: 'var(--text-lg)', marginBottom: 8 }}>
+                                Próximamente más proyectos
+                            </p>
+                            <p style={{ fontSize: 'var(--text-sm)' }}>
+                                Estamos subiendo nuestros mejores trabajos. Volvé pronto.
+                            </p>
+                        </div>
+                    )}
 
                     {/* CSS Columns Masonry */}
-                    <div className="gal-masonry gal-reveal" key={activeFilter}>
-                        {filtered.map((item, i) => (
-                            <div
-                                className="gal-card gal-stagger"
-                                key={item.id}
-                                onClick={() => setLightboxIdx(i)}
-                            >
-                                <div className="gal-card-img">
-                                    <img src={item.src} alt={item.title} loading="lazy" />
-                                </div>
-                                <div className="gal-card-overlay">
-                                    {item.cat && <span className="gal-card-cat">{categories.find(c => c.key === item.cat)?.label || item.cat}</span>}
-                                    {item.title && <h3 className="gal-card-title">{item.title}</h3>}
-                                    {item.fabric && <span className="gal-card-fabric">{item.fabric}</span>}
-                                </div>
-                                <div className="gal-card-zoom">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-                                        <line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
-                                    </svg>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══ 3. FEATURED PROJECTS — Horizontal scroller ═══ */}
-            <section className="gal-featured">
-                <div className="container">
-                    <div className="gal-featured-header gal-reveal">
-                        <div className="gal-featured-header-left">
-                            <span className="gal-featured-label gal-stagger">Proyectos destacados</span>
-                            <h2 className="gal-featured-title gal-stagger">
-                                Trabajos que nos <em>enorgullecen</em>
-                            </h2>
-                        </div>
-                        <p className="gal-featured-desc gal-stagger">
-                            Proyectos que representan lo mejor de nuestro trabajo. Arrastrá para explorar.
-                        </p>
-                    </div>
-                </div>
-
-                <div
-                    className="gal-featured-scroll gal-reveal"
-                    ref={featuredRef}
-                    onMouseDown={onDragStart}
-                    onMouseMove={onDragMove}
-                    onMouseUp={onDragEnd}
-                    onMouseLeave={onDragEnd}
-                    onTouchStart={onDragStart}
-                    onTouchMove={onDragMove}
-                    onTouchEnd={onDragEnd}
-                    style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
-                >
-                    <div className="gal-featured-track">
-                        {featured.map((proj, i) => (
-                            <article className="gal-feat-card gal-stagger" key={i}>
-                                <div className="gal-feat-card-img">
-                                    <img src={proj.image} alt={proj.title} loading="lazy" />
-                                </div>
-                                <div className="gal-feat-card-content">
-                                    <span className="gal-feat-num">{String(i + 1).padStart(2, '0')}</span>
-                                    <h3 className="gal-feat-card-title">{proj.title}</h3>
-                                    <p className="gal-feat-card-desc">{proj.desc}</p>
-                                    <div className="gal-feat-meta">
-                                        <div className="gal-feat-meta-item">
-                                            <span className="gal-feat-meta-label">Tela</span>
-                                            <span className="gal-feat-meta-value">{proj.fabric}</span>
-                                        </div>
-                                        <div className="gal-feat-meta-item">
-                                            <span className="gal-feat-meta-label">Tiempo</span>
-                                            <span className="gal-feat-meta-value">{proj.time}</span>
-                                        </div>
+                    {!loading && filtered.length > 0 && (
+                        <div className="gal-masonry gal-reveal" key={activeFilter}>
+                            {filtered.map((item, i) => (
+                                <div
+                                    className="gal-card gal-stagger"
+                                    key={item.id}
+                                    onClick={() => setLightboxIdx(i)}
+                                >
+                                    <div className="gal-card-img">
+                                        <img src={item.src} alt={item.title || 'Proyecto de tapicería'} loading="lazy" />
+                                    </div>
+                                    <div className="gal-card-overlay">
+                                        {item.cat && <span className="gal-card-cat">{categories.find(c => c.key === item.cat)?.label || item.cat}</span>}
+                                        {item.title && <h3 className="gal-card-title">{item.title}</h3>}
+                                        {item.fabric && <span className="gal-card-fabric">{item.fabric}</span>}
+                                    </div>
+                                    <div className="gal-card-zoom">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                            <line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
+                                        </svg>
                                     </div>
                                 </div>
-                            </article>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 
-            {/* ═══ 4. CTA ═══ */}
+            {/* ═══ 3. CTA ═══ */}
             <section className="gal-cta">
                 <div className="container">
                     <div className="gal-cta-inner gal-reveal">
