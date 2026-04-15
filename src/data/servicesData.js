@@ -3,6 +3,8 @@
    Used by: ServicesBento (Home), ServicePage
    ============================================ */
 
+import sillasHeroImg from '../assets/sillas-hero.jpg'
+
 const services = [
     {
         slug: 'salas',
@@ -54,8 +56,8 @@ const services = [
         description: 'Comedor, oficina o diseñador — devolvemos la vida a cada pieza.',
         longDescription:
             'Las sillas son de las piezas que más uso reciben en cualquier hogar u oficina. Con el tiempo, los asientos se hunden, las telas se desgastan y los marcos se aflojan. En Velvet Tapicería restauramos sillas de comedor, sillas de oficina, sillas de diseñador y sillas antiguas con la misma dedicación y atención al detalle. Nuestro equipo evalúa la estructura completa, reemplaza espuma y relleno cuando es necesario, refuerza marcos y aplica el nuevo tapizado con acabados de primera. Ya sea que tengas un juego de 4, 6 u 8 sillas, trabajamos en lote para mantener consistencia perfecta en cada pieza.',
-        heroImage: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=1400&q=80',
-        image: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=600&q=80',
+        heroImage: sillasHeroImg,
+        image: sillasHeroImg,
         features: [
             'Trabajo en lote para sets completos',
             'Refuerzo estructural de marcos',
@@ -72,7 +74,7 @@ const services = [
         ],
         fabrics: ['Vinipiel', 'Tela Texturizada', 'Lino', 'Microfibra', 'Piel Sintética'],
         gallery: [
-            'https://images.unsplash.com/photo-1503602642458-232111445657?w=600&q=80',
+            sillasHeroImg,
             'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=600&q=80',
             'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80',
             'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80',
