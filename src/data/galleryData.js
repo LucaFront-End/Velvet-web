@@ -26,10 +26,11 @@ function mapCmsItem(item, index) {
     return {
         id: `cms-${item._id || index}`,
         cat: (item.categoria || item.categora || '').toLowerCase().trim() || '',
+        tab: (item.pestanas || item.pestaNas || item['pesta_as'] || item.pestaas || item['pestañas'] || '').trim() || '',
         src: wixImageToUrl(item.image || item.imagen),
         title: item.title || '',
         fabric: item.tela || '',
-        cotizarUrl: item.enlaceDeBotonDeCotizar || item.enlaceDeBottonDeCotizar || '',
+        cotizarUrl: item.enlaceDeBotnDeCotizar || item.enlaceDeBotonDeCotizar || item.enlaceDeBottonDeCotizar || '',
     }
 }
 
@@ -91,4 +92,25 @@ export function buildCategories(items) {
         })
     })
     return cats
+}
+
+/**
+ * Extract unique tabs (Pestañas) from gallery items.
+ * These are the top-level filter tabs shown in the gallery UI.
+ * Returns array of { key, label } objects.
+ */
+export function buildTabs(items) {
+    const tabSet = new Set()
+    items.forEach((item) => {
+        if (item.tab) tabSet.add(item.tab)
+    })
+
+    const tabs = [{ key: 'todo', label: 'Todo' }]
+    tabSet.forEach((tab) => {
+        tabs.push({
+            key: tab.toLowerCase(),
+            label: tab.charAt(0).toUpperCase() + tab.slice(1).toLowerCase(),
+        })
+    })
+    return tabs
 }
