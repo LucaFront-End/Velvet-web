@@ -185,7 +185,7 @@ export default function ServicePage() {
         )
         page.querySelectorAll('.sp-reveal').forEach((el) => observer.observe(el))
         return () => observer.disconnect()
-    }, [slug])
+    }, [slug, galleryLoading])
 
     if (!service) return <Navigate to="/" replace />
 
