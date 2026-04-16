@@ -15,8 +15,8 @@ const projects = [
         title: 'Sillón Clásico',
         fabric: 'Piel sintética Cognac',
         time: '7 días',
-        before: '/images/before-after/before-armchair.png',
-        after: '/images/before-after/after-armchair.png',
+        before: '/images/before-after/before-armchair-new.png',
+        after: '/images/before-after/after-armchair-new.png',
     },
     {
         id: 3,

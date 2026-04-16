@@ -36,8 +36,9 @@ const timeline = [
 
 const specialties = [
     { title: 'Salas y sillones', desc: 'Retapizado completo con estructura reforzada y espuma de alta densidad.', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80' },
-    { title: 'Sillas de comedor', desc: 'Renovación de asiento y respaldo con telas resistentes al uso diario.', img: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=500&q=80' },
+    { title: 'Sillas de comedor', desc: 'Renovación de asiento y respaldo con telas resistentes al uso diario.', img: '/images/sillas-de-comedor.jpg' },
     { title: 'Cabeceras', desc: 'Diseños capitonados, lisos o con marcos de madera a medida.', img: 'https://images.unsplash.com/photo-1616627561950-9f746e330187?w=500&q=80' },
+    { title: 'Diseño de interiores', desc: 'Asesoría experta para seleccionar colores, texturas y estilos que armonicen con tu espacio.', img: '/images/interior-design-armchair.png' },
 ]
 
 export default function AboutPage() {
