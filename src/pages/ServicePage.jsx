@@ -129,9 +129,10 @@ export default function ServicePage() {
             try {
                 const items = await fetchGalleryItems()
                 if (cancelled) return
-                if (service?.cmsCategory) {
+                const cats = service?.cmsCategories || []
+                if (cats.length > 0) {
                     const filtered = items.filter(
-                        (item) => item.cat === service.cmsCategory.toLowerCase()
+                        (item) => cats.includes(item.cat)
                     )
                     setCmsGallery(filtered.map((item) => item.src))
                 } else {
@@ -145,7 +146,7 @@ export default function ServicePage() {
         }
         loadGallery()
         return () => { cancelled = true }
-    }, [slug, service?.cmsCategory])
+    }, [slug, service?.cmsCategories])
 
     /* Use CMS images when available, fallback to hardcoded */
     const galleryImages = cmsGallery.length > 0 ? cmsGallery : service?.gallery || []
