@@ -153,7 +153,7 @@ const services = [
         fabrics: ['Terciopelo', 'Lino', 'Chenille', 'Piel Sintética', 'Bouclé', 'Microfibra', 'Antimanchas', 'Outdoor'],
         gallery: [
             'https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80',
-            'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80',
+            'https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&q=80',
             'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80',
             'https://images.unsplash.com/photo-1615529182904-14819c35db37?w=600&q=80',
         ],
