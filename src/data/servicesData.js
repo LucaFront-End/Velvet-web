@@ -8,6 +8,7 @@ import sillasHeroImg from '../assets/sillas-hero.jpg'
 const services = [
     {
         slug: 'salas',
+        cmsCategory: 'sofá',
         title: 'Tapicería de Salas',
         tagline: 'Tu sala, completamente renovada',
         tag: 'Más popular',
@@ -50,6 +51,7 @@ const services = [
     },
     {
         slug: 'sillas',
+        cmsCategory: 'silla',
         title: 'Retapizado de Sillas',
         tagline: 'Cada silla, como nueva',
         tag: 'Comedor & oficina',
@@ -87,6 +89,7 @@ const services = [
     },
     {
         slug: 'cabeceras',
+        cmsCategory: 'cabecera',
         title: 'Cabeceras a Medida',
         tagline: 'El toque perfecto para tu recámara',
         tag: 'Recámaras',
@@ -124,6 +127,7 @@ const services = [
     },
     {
         slug: 'telas',
+        cmsCategory: '',
         title: 'Catálogo de Telas',
         tagline: 'Más de 200 opciones para tu proyecto',
         tag: 'Materiales',

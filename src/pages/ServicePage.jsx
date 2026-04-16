@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { getServiceBySlug } from '../data/servicesData'
+import { fetchGalleryItems } from '../data/galleryData'
 import SEO from '../components/SEO/SEO'
 import './ServicePage.css'
 
@@ -117,6 +118,38 @@ export default function ServicePage() {
 
     useEffect(() => { window.scrollTo(0, 0) }, [slug])
 
+    /* Fetch CMS gallery images filtered by service category */
+    const [cmsGallery, setCmsGallery] = useState([])
+    const [galleryLoading, setGalleryLoading] = useState(true)
+
+    useEffect(() => {
+        let cancelled = false
+        async function loadGallery() {
+            setGalleryLoading(true)
+            try {
+                const items = await fetchGalleryItems()
+                if (cancelled) return
+                if (service?.cmsCategory) {
+                    const filtered = items.filter(
+                        (item) => item.cat === service.cmsCategory.toLowerCase()
+                    )
+                    setCmsGallery(filtered.map((item) => item.src))
+                } else {
+                    setCmsGallery([])
+                }
+            } catch (err) {
+                console.warn('[CMS] Service gallery fetch failed:', err.message)
+                setCmsGallery([])
+            }
+            setGalleryLoading(false)
+        }
+        loadGallery()
+        return () => { cancelled = true }
+    }, [slug, service?.cmsCategory])
+
+    /* Use CMS images when available, fallback to hardcoded */
+    const galleryImages = cmsGallery.length > 0 ? cmsGallery : service?.gallery || []
+
     /* Scroll progress bar */
     useEffect(() => {
         const onScroll = () => {
@@ -226,9 +259,11 @@ export default function ServicePage() {
             </section>
 
             {/* ═══ 4. HORIZONTAL GALLERY ═══ */}
-            <div className="sp-reveal">
-                <Gallery images={service.gallery} title={service.title} />
-            </div>
+            {!galleryLoading && galleryImages.length > 0 && (
+                <div className="sp-reveal">
+                    <Gallery images={galleryImages} title={service.title} />
+                </div>
+            )}
 
             {/* ═══ 5. PROCESS — Horizontal compact ═══ */}
             <section className="sp-process">
