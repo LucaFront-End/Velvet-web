@@ -3,6 +3,9 @@
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/pages-sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/services-sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/landings-sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/(.*)", "destination": "/api/render" }
   ]
 }

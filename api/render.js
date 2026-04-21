@@ -55,6 +55,10 @@ const STATIC_SEO = {
         title: 'Catálogo de Telas para Tapizar en CDMX | Tapicería Velvet',
         description: 'Más de 200 opciones de telas para tapizar: lino, terciopelo, piel sintética y telas Pet Friendly. Catálogo premium en CDMX.',
     },
+    '/zonas': {
+        title: 'Zonas de Servicio de Tapicería en CDMX y Edomex | Tapicería Velvet',
+        description: 'Servicio de tapicería a domicilio en todas las zonas de CDMX y Estado de México. Encuentra la zona más cercana y cotiza gratis.',
+    },
 }
 
 // ── CMS cache ──
@@ -174,11 +178,24 @@ export default async function handler(req, res) {
         seo = cmsPages[pathname]
     }
 
-    // If we found SEO data, inject it
+    // ── Always inject canonical URL for every HTML route ──
+    const canonicalUrl = `${DOMAIN}${pathname}`
+    if (html.includes('<link rel="canonical"')) {
+        html = html.replace(
+            /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,
+            `<link rel="canonical" href="${canonicalUrl}" />`
+        )
+    } else {
+        html = html.replace(
+            '</head>',
+            `    <link rel="canonical" href="${canonicalUrl}" />\n  </head>`
+        )
+    }
+
+    // ── Inject SEO meta if we have data for this route ──
     if (seo) {
         const safeTitle = escapeHtml(seo.title)
         const safeDesc = escapeHtml(seo.description)
-        const canonicalUrl = `${DOMAIN}${pathname}`
 
         // Replace <title>
         html = html.replace(
@@ -209,19 +226,6 @@ export default async function handler(req, res) {
             /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/,
             `<meta property="og:url" content="${canonicalUrl}" />`
         )
-
-        // Add or replace canonical
-        if (html.includes('<link rel="canonical"')) {
-            html = html.replace(
-                /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,
-                `<link rel="canonical" href="${canonicalUrl}" />`
-            )
-        } else {
-            html = html.replace(
-                '</head>',
-                `    <link rel="canonical" href="${canonicalUrl}" />\n  </head>`
-            )
-        }
     }
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
